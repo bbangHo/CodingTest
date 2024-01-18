@@ -1,4 +1,4 @@
-package ref.ex;
+package oop.ex;
 
 public class Rectangle {
     int area;

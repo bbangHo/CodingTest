@@ -1,24 +1,41 @@
-package ref.ex;
+package oop.ex;
 
-import java.io.*;
-import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-public class ProductOrderMain2 {
+public class ProductOrderMain3 {
     public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("입력할 주문의 개수를 입력하세요: ");
+        Integer n = Integer.parseInt(br.readLine());
+
         // 여러 상품의 주문 정보를 담는 배열 생성
-        ProductOrder[] productOrders = new ProductOrder[3];
+        ProductOrder[] productOrders = new ProductOrder[n];
 
         // createOrder()를 여러번 사용해서 상품 주문 정보들을 생성하고 배열에 저장
-        productOrders[0] = createOrder("두부", 2000, 2);
-        productOrders[1] = createOrder("김치", 5000, 1);
-        productOrders[2] = createOrder("콜라", 1500, 2);
+        for (int i = 1; i <= n; i++) {
+            System.out.println(i + "번째 주문 정보를 입력하세요.");
+
+            System.out.print("상품명: ");
+            String productName = br.readLine();
+
+            System.out.print("가격: ");
+            Integer price = Integer.parseInt(br.readLine());
+
+            System.out.print("개수: ");
+            Integer quantity = Integer.parseInt(br.readLine());
+
+            productOrders[i] = createOrder(productName, price, quantity);
+        }
 
         // printOrders()를 사용해서 상품 주문 정보 출력
         printOrders(productOrders);
 
         // getTotalAmount()를 사용해서 총 결제 금액 계산
         // 총 결제 금액 출력
-        getTotalAmount(productOrders);
+        System.out.println(getTotalAmount(productOrders));
     }
 
     public static ProductOrder createOrder(String productName, int price, int quantity) {
